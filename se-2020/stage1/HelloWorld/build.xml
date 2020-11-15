@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="HelloWorld" default="run">
+  <target name="clean">
+    <delete dir="build"/>
+  </target> 
+
+  <target name="compile" depends="clean">
+    <mkdir dir="build/classes"/>
+    <javac srcdir="src" destdir="build/classes" includeantruntime="on">
+      <classpath>
+        <fileset dir="./" includes="**/*.jar"/>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="run" depends="compile">
+    <java classname="HelloWorld">
+      <classpath>
+        <pathelement path="build/classes"/>
+      </classpath>
+    </java>
+  </target> 
+
+  <target name="junit" depends="compile">
+    <junit printsummary="true" fork="true" haltonfailure="false" showoutput="true">
+      <classpath>
+        <fileset dir="./" includes="**/*.jar"/>
+        <pathelement path="build/classes"/>
+      </classpath>
+      <test name="HelloWorldTest"/>
+      <formatter type="xml"/>
+      <batchtest>
+        <fileset dir="build/classes" includes="**/*Test.*"/>
+      </batchtest>
+    </junit>
+  </target> 
+
+</project>

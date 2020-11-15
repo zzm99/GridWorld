@@ -1,0 +1,12 @@
+<?xml version="1.0" ?> 
+<project name ="Calculator" default="run" basedir="."> 
+    
+    <target name="compile"> 
+        <javac srcdir ="${basedir}/" destdir ="${basedir}/" includeantruntime="on" /> 
+    </target> 
+    
+    <target name="run"  depends ="compile"> 
+        <java classname ="Calculator" /> 
+    </target> 
+    
+</project> 
